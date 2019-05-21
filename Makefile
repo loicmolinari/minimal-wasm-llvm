@@ -10,16 +10,16 @@ LD_FLAGS       = --no-entry --export-dynamic
 %.bc: %.c
 	$(CC) $(CC_FLAGS) $< -o $@
 
-%.o: %.bc
+%.obj: %.bc
 	$(LLC) $(LLC_FLAGS) $< -o $@
 
-%.o: %.wat
+%.obj: %.wat
 	$(WAT2WASM) $(WAT2WASM_FLAGS) $< -o $@
 
-%.wasm: a.o b.o c.o
+%.wasm: a.obj b.obj c.obj
 	$(LD) $(LD_FLAGS) $^ -o $@
 	chmod a-x $@
 
 all: module.wasm
 
-.PRECIOUS: a.o b.o c.o
+.PRECIOUS: a.obj b.obj c.obj
