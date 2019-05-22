@@ -22,4 +22,7 @@ LD_FLAGS       = --no-entry --export-dynamic
 
 all: module.wasm
 
+clean:
+	rm -f *.obj *.wasm
+
 .PRECIOUS: a.obj b.obj c.obj
